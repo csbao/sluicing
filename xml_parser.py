@@ -93,16 +93,17 @@ def main():
     # Now we would like to iterate through database and search for sentence in lists
     #conn = sqlite3.connect('nyt.db')
     #c = conn.cursor()
-
     #c.execute(''' select line, sentence, file from sluices order by file asc''')
     #rows = c.fetchall()
     begin = int(sys.argv[1])
     end = int(sys.argv[2])
-    begin = 0
+    #begin = 0
     cwd = "/campusdata/csbao/sluicing/scripts/"
+    #print(datetime.datetime.now().time().isoformat())
     rows = jsonConvert(cwd+"allSluices.jsons")
-    end = len(rows)
-    file1 = rows[0][0]
+    #print(datetime.datetime.now().time().isoformat())
+    file1 = rows[begin][0]
+    print(len(rows))
     print(file1)
     contents = list_of_file(process_filename(file1))
     for iter in rows[begin:end]:
