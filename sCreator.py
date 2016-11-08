@@ -1,17 +1,15 @@
 import sys
 import subprocess
 
-
-
-
-def makeQsub(dividend=7, count=4634, outputdir="output"):
+def makeQsub(dividend=50, count=4634, outputdir="output"):
     
     prev = 0
     email="csbao@ucsc.edu"
     for i in range(1,dividend+1):
-        curr = count/dividend * i
-
-        queue = "small.q"
+        curr = count/dividend * i if i<dividend else count
+        #if (i==dividend):
+        #    curr = count
+        queue = "all.q"
         echoArgs = ["/campusdata/csbao/usr/local/bin/python3.3", "/campusdata/csbao/sluicing/scripts/xml_parser.py", str(prev), str(curr)]
         outputFile = "/campusdata/csbao/sluicing/scripts/%s/output_%d" % (outputdir, i)
         errorFile = "/campusdata/csbao/sluicing/scripts/%s/error_%d" % (outputdir, i)

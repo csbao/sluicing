@@ -99,12 +99,9 @@ def main():
     end = int(sys.argv[2])
     #begin = 0
     cwd = "/campusdata/csbao/sluicing/scripts/"
-    #print(datetime.datetime.now().time().isoformat())
     rows = jsonConvert(cwd+"allSluices.jsons")
-    #print(datetime.datetime.now().time().isoformat())
     file1 = rows[begin][0]
-    print(len(rows))
-    print(file1)
+    #print(file1)
     contents = list_of_file(process_filename(file1))
     for iter in rows[begin:end]:
         removedSpaces = iter[1].replace(" ", "")
@@ -114,14 +111,12 @@ def main():
             filename = process_filename(file1)
             # update contents
             contents = list_of_file(filename)
-        # if (iter[2]=="Treebanks/NYT-Parsed/nyt_eng_199407.tgrep2"):
 
-        for i in contents:
-            # print(removedSpaces)
+        for element in contents:
             find = False
-            for sent in i[1]:
+            for index, sent in enumerate(element[1]):
                 if (removedSpaces in sent):
-                    print (i[0])
+                    print (element[0], index) # print the headline and the offset of the sluice
                     find = True
                     break
             if find: break
